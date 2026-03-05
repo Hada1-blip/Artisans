@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CouvreurPro — Devis gratuit</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.devis-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:5rem;align-items:start;margin-top:3.5rem}
+
+/* Contact tiles */
+.ct-block{display:flex;flex-direction:column;gap:1rem}
+.ct-tile{
+  display:flex;align-items:center;gap:1.2rem;
+  padding:1.3rem 1.5rem;
+  background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;
+  transition:border-color .25s,box-shadow .25s,transform .22s cubic-bezier(.34,1.56,.64,1);
+  text-decoration:none;color:inherit;
+}
+.ct-tile:hover{border-color:var(--gold);box-shadow:0 6px 28px rgba(184,136,42,.14);transform:translateY(-3px)}
+.ct-ico{width:50px;height:50px;flex-shrink:0;background:var(--gold3);border:1px solid rgba(184,136,42,.22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:background .25s}
+.ct-tile:hover .ct-ico{background:var(--gold4)}
+.ct-lbl{font-family:'Manrope',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ct-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:var(--text)}
+
+.sched{background:var(--gold3);border:1px solid rgba(184,136,42,.2);border-radius:14px;padding:1.3rem 1.5rem;display:flex;gap:12px;align-items:flex-start;margin-top:.5rem}
+.sched p{font-size:.88rem;line-height:1.75;color:var(--text2)}
+.sched strong{color:var(--text);font-weight:600}
+
+/* Form card */
+.form-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:20px;padding:2.4rem}
+.form-title{font-family:'Manrope',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:1.5rem;letter-spacing:-.02em}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.4rem}
+.fg label{font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fg input,
+.fg textarea,
+.fg select{
+  background:var(--bg3);border:1.5px solid var(--border);border-radius:9px;
+  padding:.82rem 1rem;color:var(--text);font-size:.95rem;outline:none;
+  transition:border-color .2s,box-shadow .2s,background .2s;width:100%;appearance:none;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(184,136,42,.12)}
+.fg input::placeholder,.fg textarea::placeholder{color:#b5afa6}
+.fg textarea{resize:vertical;min-height:108px}
+.fg select option{background:var(--bg2)}
+
+.fsub{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:1.05rem;width:100%;
+  background:var(--gold);color:#fff;
+  font-family:'Manrope',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.02em;
+  border:none;border-radius:10px;cursor:pointer;margin-top:.6rem;
+  box-shadow:0 4px 20px rgba(184,136,42,.32);
+  transition:background .2s,transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;
+}
+.fsub:hover{background:var(--gold2);transform:translateY(-3px);box-shadow:0 8px 32px rgba(184,136,42,.48)}
+.fsub:active{transform:translateY(0) scale(.98)}
+.fsub.sent{background:#2a6348}
+
+/* Success message */
+.success-msg{display:none;background:#f0faf4;border:1px solid #a3d9b8;border-radius:12px;padding:1.4rem;text-align:center;margin-top:1rem}
+.success-msg .ico{font-size:2rem;margin-bottom:.5rem}
+.success-msg p{font-size:.92rem;color:#1e5c3a;font-weight:500}
+
+/* FAQ */
+.faq-section{background:var(--bg2);padding:108px 5%}
+.faq-list{max-width:720px;margin:2.5rem 0 0;display:flex;flex-direction:column;gap:1rem}
+.faq-item{border:1.5px solid var(--border);border-radius:14px;overflow:hidden}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 1.4rem;cursor:pointer;
+  font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);
+  transition:background .2s;gap:1rem;
+}
+.faq-q:hover{background:var(--bg3)}
+.faq-q .arrow{width:20px;height:20px;flex-shrink:0;transition:transform .3s;color:var(--gold)}
+.faq-item.open .faq-q{background:var(--gold3)}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .3s}
+.faq-a p{padding:0 1.4rem 1.2rem;font-size:.9rem;line-height:1.78;color:var(--muted)}
+.faq-item.open .faq-a{max-height:200px}
+
+@media(max-width:960px){.devis-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Couvreur<span>Pro</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="devis.html" class="nav-cta active">Devis gratuit</a></li>
+    </ul>
+    <button class="hbg" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li class="dcta"><a href="devis.html">Devis gratuit →</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow reveal">Contact</div>
+    <h1 class="reveal d1">Demandez votre devis</h1>
+    <p class="reveal d2">Vous voulez savoir combien ça va coûter ? Nous pouvons passer chez vous et vous donner un devis clair et rapide. Appelez-nous au <strong>06 00 00 00 00</strong> ou laissez un message, nous revenons vers vous rapidement.</p>
+  </div>
+</div>
+
+<section class="section-pad alt">
+  <div class="container">
+    <div class="devis-grid">
+
+      <!-- LEFT : contact direct -->
+      <div class="reveal">
+        <p style="font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem">Contactez-nous directement</p>
+        <div class="ct-block">
+
+          <!-- VRAI lien téléphone -->
+          <a href="tel:+33600000000" class="ct-tile">
+            <div class="ct-ico">📞</div>
+            <div>
+              <div class="ct-lbl">Téléphone</div>
+              <div class="ct-val">06 00 00 00 00</div>
+            </div>
+          </a>
+
+          <!-- VRAI lien email -->
+          <a href="mailto:contact@couvreurpro.fr" class="ct-tile">
+            <div class="ct-ico">✉️</div>
+            <div>
+              <div class="ct-lbl">Email</div>
+              <div class="ct-val">contact@couvreurpro.fr</div>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/33600000000" target="_blank" rel="noopener" class="ct-tile">
+            <div class="ct-ico">💬</div>
+            <div>
+              <div class="ct-lbl">WhatsApp</div>
+              <div class="ct-val">Message rapide</div>
+            </div>
+          </a>
+
+          <!-- Zone géo (pas cliquable) -->
+          <div class="ct-tile" style="cursor:default;pointer-events:none">
+            <div class="ct-ico">📍</div>
+            <div>
+              <div class="ct-lbl">Zone d'intervention</div>
+              <div class="ct-val">Île-de-France & alentours</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sched">
+          <span style="font-size:1.3rem;flex-shrink:0;margin-top:2px">🕐</span>
+          <p>Disponible <strong>du lundi au samedi</strong>, de 8h à 19h.<br>Intervention d'urgence possible en dehors de ces horaires — n'hésitez pas à nous contacter.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT : formulaire -->
+      <div class="reveal d2">
+        <form class="form-card" id="quoteForm" onsubmit="submitForm(event)">
+          <p class="form-title">📋 Formulaire de devis gratuit</p>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div class="form-row">
+              <div class="fg"><label>Prénom *</label><input type="text" placeholder="Jean" required></div>
+              <div class="fg"><label>Nom *</label><input type="text" placeholder="Dupont" required></div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>Téléphone *</label><input type="tel" placeholder="06 XX XX XX XX" required></div>
+              <div class="fg"><label>Email</label><input type="email" placeholder="jean@email.fr"></div>
+            </div>
+            <div class="fg"><label>Adresse du chantier</label><input type="text" placeholder="12 rue des Lilas, 77000 Melun"></div>
+            <div class="fg">
+              <label>Type de travaux</label>
+              <select required>
+                <option value="">Sélectionner...</option>
+                <option>Réparation de fuite</option>
+                <option>Remplacement de tuiles</option>
+                <option>Rénovation complète</option>
+                <option>Gouttières</option>
+                <option>Traitement / hydrofugation</option>
+                <option>Velux / lucarnes</option>
+                <option>Diagnostic</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="fg"><label>Votre message</label><textarea placeholder="Décrivez votre projet, le problème constaté, la superficie approximative..."></textarea></div>
+            <button type="submit" class="fsub" id="fBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Envoyer ma demande
+            </button>
+          </div>
+        </form>
+        <div class="success-msg" id="successMsg">
+          <div class="ico">✅</div>
+          <p><strong>Demande envoyée !</strong><br>Nous vous recontactons sous 24h pour organiser le passage gratuit chez vous.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="eyebrow reveal">Questions fréquentes</div>
+    <h2 class="reveal d1">Vous avez des questions ?</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Le devis est-il vraiment gratuit ?
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a"><p>Oui, totalement gratuit et sans engagement. Nous nous déplaçons chez vous, évaluons l'état de votre toiture et vous remettons un devis détaillé sous 48h.</p></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Intervenez-vous en urgence ?
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a"><p>Oui. Pour les fuites actives ou dégâts importants, nous intervenons en urgence. Appelez-nous directement au 06 00 00 00 00 pour une prise en charge rapide.</p></div>
+      </div>
+      <div class="faq-item reveal d2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Êtes-vous assurés ?
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a"><p>Absolument. Nous disposons d'une assurance décennale et d'une assurance responsabilité civile professionnelle. Tous nos travaux sont garantis 10 ans.</p></div>
+      </div>
+      <div class="faq-item reveal d3">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Quelle est votre zone d'intervention ?
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a"><p>Nous intervenons dans toute l'Île-de-France et dans un rayon d'environ 80 km autour de Paris. Contactez-nous pour vérifier votre secteur.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand"><div class="footer-logo">Couvreur<span>Pro</span></div><p>Couvreurs professionnels en Île-de-France depuis plus de 10 ans.</p></div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="services.html">Services</a></li><li><a href="apropos.html">À propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="devis.html">Devis gratuit</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Réparation de fuites</a></li><li><a href="services.html">Remplacement de tuiles</a></li><li><a href="services.html">Rénovation complète</a></li><li><a href="services.html">Gouttières</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><ul><li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li><li>✉️ <a href="mailto:contact@couvreurpro.fr">contact@couvreurpro.fr</a></li><li>📍 Île-de-France</li><li>🕐 Lun–Sam · 8h–19h</li></ul></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2025 CouvreurPro</span><span class="footer-copy">Assurance décennale · Certifié RGE Qualibat</span></div>
+</footer>
+
+<script>
+/* NAV */
+var nb=document.getElementById('navbar'),bg=document.getElementById('burger'),dr=document.getElementById('drawer');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',scrollY>30)},{passive:true});
+bg.addEventListener('click',function(){bg.classList.toggle('open');dr.classList.toggle('open')});
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){bg.classList.remove('open');dr.classList.remove('open')})});
+
+/* REVEAL */
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+/* FORM SUBMIT */
+function submitForm(e){
+  e.preventDefault();
+  var btn=document.getElementById('fBtn');
+  btn.disabled=true;
+  btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Envoi en cours...';
+  btn.classList.add('sent');
+  setTimeout(function(){
+    document.getElementById('quoteForm').style.display='none';
+    document.getElementById('successMsg').style.display='block';
+  },1200);
+}
+
+/* FAQ ACCORDION */
+function toggleFaq(el){
+  var item=el.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+  if(!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

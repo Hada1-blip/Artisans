@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CouvreurPro — Accueil</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:var(--nav-h);background:var(--bg);position:relative;overflow:hidden}
+.glow-a{position:absolute;top:-140px;right:-160px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(184,136,42,.13) 0%,transparent 68%);pointer-events:none}
+.glow-b{position:absolute;bottom:-100px;left:-100px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(184,136,42,.07) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:center;max-width:1160px;margin:0 auto;padding:80px 5% 100px;width:100%}
+.hero-left{display:flex;flex-direction:column;gap:1.6rem}
+.hero-h1 .line{display:block}
+.hero-h1 .accent{color:var(--gold);position:relative;display:inline-block}
+.hero-h1 .accent::after{content:'';position:absolute;left:0;bottom:-5px;width:100%;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px}
+.hero-desc{font-size:1.07rem;line-height:1.85;color:var(--muted);max-width:530px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+.hero-stats{display:flex;gap:2.8rem;flex-wrap:wrap;padding-top:1.2rem;border-top:1px solid var(--border)}
+.stn{font-family:'Manrope',sans-serif;font-size:2.2rem;font-weight:900;letter-spacing:-.045em;color:var(--text);line-height:1}
+.stn sup{font-size:1.1rem;color:var(--gold);font-weight:800}
+.stl{font-size:.76rem;font-weight:500;color:var(--muted);margin-top:5px}
+.hero-right{position:relative}
+.hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;box-shadow:var(--shl);border:1px solid var(--border)}
+.hero-badge{position:absolute;bottom:30px;left:-30px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.4rem;box-shadow:var(--shl);display:flex;align-items:center;gap:13px;min-width:210px}
+.badge-ico{width:46px;height:46px;background:var(--gold4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.badge-val{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.05rem;color:var(--text);letter-spacing:-.02em}
+.badge-lbl{font-size:.7rem;font-weight:500;color:var(--muted);margin-top:2px}
+
+/* USP */
+.usp{background:var(--dark2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.usp-grid{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.usp-item{display:flex;align-items:center;gap:14px;padding:1.8rem 1.5rem;border-right:1px solid rgba(255,255,255,.05);transition:background .25s}
+.usp-item:last-child{border-right:none}
+.usp-item:hover{background:rgba(255,255,255,.03)}
+.usp-ico{font-size:1.6rem;flex-shrink:0}
+.usp-item strong{display:block;font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:700;color:#ddd8cf;margin-bottom:2px}
+.usp-item span{font-size:.77rem;color:#554f48}
+
+/* SERVICES HOME */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.8rem}
+.svc-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem 1.9rem 2.2rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:20px 20px 0 0}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shl);border-color:var(--border2)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-ico{width:52px;height:52px;background:var(--gold3);border:1px solid rgba(184,136,42,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1.2rem;transition:background .3s}
+.svc-card:hover .svc-ico{background:var(--gold4)}
+.svc-card h3{margin-bottom:.55rem}
+.svc-card p{font-size:.88rem;line-height:1.75;color:var(--muted)}
+
+/* ABOUT TEASER */
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:5rem;align-items:center}
+.about-imgs{position:relative}
+.about-main{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;box-shadow:var(--shl)}
+.about-sm{position:absolute;bottom:-24px;right:-24px;width:54%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:4px solid var(--bg2);box-shadow:var(--shl)}
+.about-years{position:absolute;top:28px;left:-22px;background:var(--gold);color:#fff;border-radius:12px;padding:1.2rem 1.6rem;text-align:center;box-shadow:0 8px 36px rgba(184,136,42,.42)}
+.ay-n{font-family:'Manrope',sans-serif;font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-.05em}
+.ay-t{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:5px;opacity:.85}
+.about-body{display:flex;flex-direction:column;gap:1.4rem}
+.about-body p{font-size:1rem;line-height:1.85;color:var(--muted)}
+.vals{display:flex;flex-direction:column;gap:.7rem;border-left:3px solid var(--gold);padding-left:1.3rem;margin:.4rem 0}
+.val{font-size:.93rem;font-weight:500;color:var(--text2)}
+
+/* CTA BAND */
+.cta-band{background:var(--gold);padding:72px 5%}
+.cta-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-inner h2{color:#fff;margin-bottom:.5rem;font-size:clamp(1.7rem,3vw,2.5rem)}
+.cta-inner p{color:rgba(255,255,255,.78);font-size:1rem}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+
+@media(max-width:1024px){.hero-grid{gap:3rem}.svc-grid{grid-template-columns:repeat(2,1fr)}.usp-grid{grid-template-columns:repeat(2,1fr)}.usp-item:nth-child(2){border-right:none}}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:3.5rem}.about-imgs{max-width:480px}.about-sm{display:none}.hero-grid{grid-template-columns:1fr}.hero-right{display:none}}
+@media(max-width:768px){.svc-grid{grid-template-columns:1fr}.usp-grid{grid-template-columns:1fr}.usp-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}.usp-item:last-child{border-bottom:none}.cta-inner{flex-direction:column;text-align:center}.cta-btns{justify-content:center}}
+@media(max-width:500px){.hero-btns{flex-direction:column;align-items:flex-start}.hero-badge{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Couvreur<span>Pro</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="devis.html" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+    <button class="hbg" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li class="dcta"><a href="devis.html">Devis gratuit →</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glow-a"></div><div class="glow-b"></div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow reveal">Couvreurs professionnels — Île-de-France</div>
+      <h1 class="hero-h1 reveal d1">
+        <span class="line">Votre toit,</span>
+        <span class="line accent">notre priorité</span>
+      </h1>
+      <p class="hero-desc reveal d2">Nous prenons soin de vos toits avec notre équipe, chacun ayant son rôle pour que tout soit fait correctement et rapidement. Nous nous occupons de tout, de la réparation à la rénovation, sans prise de tête. Si votre toit a besoin d'attention, nous venons le voir sans tarder.</p>
+      <div class="hero-btns reveal d3">
+        <a href="devis.html" class="btn btn-gold">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Demander un devis
+        </a>
+        <a href="tel:+33600000000" class="btn btn-outline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.5 1.18C.5.63.89.12 1.44.05H4.44a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 7.91a16 16 0 006.18 6.18l1.22-1.22a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+          06 00 00 00 00
+        </a>
+      </div>
+      <div class="hero-stats reveal d4">
+        <div><div class="stn">10<sup>+</sup></div><div class="stl">ans d'expérience</div></div>
+        <div><div class="stn">500<sup>+</sup></div><div class="stl">chantiers réalisés</div></div>
+        <div><div class="stn">98<sup>%</sup></div><div class="stl">clients satisfaits</div></div>
+      </div>
+    </div>
+    <div class="hero-right reveal d2">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=720&q=82" alt="Couvreur" class="hero-img" onerror="this.src='https://via.placeholder.com/520x650/f1ede5/b8882a?text=CouvreurPro'">
+      <div class="hero-badge">
+        <div class="badge-ico">🏆</div>
+        <div><div class="badge-val">Certifié RGE</div><div class="badge-lbl">Qualibat — Reconnu Garant</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP -->
+<div class="usp">
+  <div class="usp-grid">
+    <div class="usp-item"><span class="usp-ico">⚡</span><div><strong>Intervention rapide</strong><span>Sous 48h sur devis</span></div></div>
+    <div class="usp-item"><span class="usp-ico">💎</span><div><strong>Matériaux premium</strong><span>Garantie 10 ans</span></div></div>
+    <div class="usp-item"><span class="usp-ico">📋</span><div><strong>Devis gratuit</strong><span>Sans engagement</span></div></div>
+    <div class="usp-item"><span class="usp-ico">🛡️</span><div><strong>Certifié RGE</strong><span>Qualibat — Assurance décennale</span></div></div>
+  </div>
+</div>
+
+<!-- SERVICES APERÇU -->
+<section class="section-pad alt">
+  <div class="container">
+    <div class="eyebrow reveal">Ce que nous faisons</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:0">
+      <h2 class="reveal d1" style="margin-bottom:0">Nos services</h2>
+      <a href="services.html" class="btn btn-gold reveal d1">Voir tous les services →</a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal"><div class="svc-ico">🔧</div><h3>Réparation de fuites</h3><p>Intervention rapide pour stopper les infiltrations d'eau. Diagnostic précis et réparation durable.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-ico">🏠</div><h3>Remplacement de tuiles</h3><p>Tuiles cassées ou vieillissantes ? Remplacement à l'identique avec des matériaux de qualité.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-ico">✨</div><h3>Rénovation complète</h3><p>Charpente, isolation, couverture — nous gérons l'ensemble du chantier de A à Z.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS TEASER -->
+<section class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs reveal">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Notre équipe" class="about-main" onerror="this.src='https://via.placeholder.com/480x600/f1ede5/b8882a?text=Equipe'">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=360&q=80" alt="Chantier" class="about-sm" onerror="this.src='https://via.placeholder.com/260x195/f8f6f1/b8882a?text=Chantier'">
+        <div class="about-years"><div class="ay-n">10</div><div class="ay-t">ans d'expertise</div></div>
+      </div>
+      <div class="about-body reveal d2">
+        <div><div class="eyebrow">Qui sommes-nous</div><h2>À propos de nous</h2></div>
+        <p>Nous sommes une équipe passionnée par notre métier et le travail bien fait. Nous travaillons honnêtement, sans promesses vides. Notre objectif : que votre maison reste protégée et que vous soyez rassurés.</p>
+        <div class="vals">
+          <div class="val">Honnêteté et transparence sur chaque chantier</div>
+          <div class="val">Matériaux sélectionnés avec soin, durabilité garantie</div>
+          <div class="val">Délais respectés, devis sans surprise</div>
+        </div>
+        <a href="apropos.html" class="btn btn-gold" style="align-self:flex-start">En savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div>
+      <h2>Votre toit a besoin d'attention ?</h2>
+      <p>Nous venons l'évaluer gratuitement et vous donnons un devis clair sous 48h.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="devis.html" class="btn btn-white">Devis gratuit</a>
+      <a href="tel:+33600000000" class="btn" style="background:rgba(0,0,0,.2);color:#fff;border:2px solid rgba(255,255,255,.4)">📞 06 00 00 00 00</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Couvreur<span>Pro</span></div>
+      <p>Couvreurs professionnels en Île-de-France depuis plus de 10 ans. Qualité, réactivité et honnêteté.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="realisations.html">Réalisations</a></li>
+        <li><a href="devis.html">Devis gratuit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Réparation de fuites</a></li>
+        <li><a href="services.html">Remplacement de tuiles</a></li>
+        <li><a href="services.html">Rénovation complète</a></li>
+        <li><a href="services.html">Gouttières</a></li>
+        <li><a href="services.html">Hydrofugation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li>
+        <li>✉️ <a href="mailto:contact@couvreurpro.fr">contact@couvreurpro.fr</a></li>
+        <li>📍 Île-de-France & alentours</li>
+        <li>🕐 Lun–Sam · 8h–19h</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 CouvreurPro — Tous droits réservés</span>
+    <span class="footer-copy">Assurance décennale · Certifié RGE Qualibat</span>
+  </div>
+</footer>
+
+<script>
+// NAV
+var nb=document.getElementById('navbar'),bg=document.getElementById('burger'),dr=document.getElementById('drawer');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',scrollY>30)},{passive:true});
+bg.addEventListener('click',function(){bg.classList.toggle('open');dr.classList.toggle('open')});
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){bg.classList.remove('open');dr.classList.remove('open')})});
+// REVEAL
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
