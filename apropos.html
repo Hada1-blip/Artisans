@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CouvreurPro — À propos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center}
+.about-imgs{position:relative}
+.about-main{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;box-shadow:var(--shl)}
+.about-sm{position:absolute;bottom:-24px;right:-24px;width:55%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:4px solid var(--bg);box-shadow:var(--shl)}
+.about-years{position:absolute;top:28px;left:-22px;background:var(--gold);color:#fff;border-radius:14px;padding:1.2rem 1.6rem;text-align:center;box-shadow:0 8px 36px rgba(184,136,42,.42)}
+.ay-n{font-family:'Manrope',sans-serif;font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-.05em}
+.ay-t{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:5px;opacity:.85}
+.about-body{display:flex;flex-direction:column;gap:1.5rem}
+.about-body p{font-size:1rem;line-height:1.85;color:var(--muted)}
+.vals{display:flex;flex-direction:column;gap:.75rem;border-left:3px solid var(--gold);padding-left:1.3rem;margin:.5rem 0}
+.val{font-size:.93rem;font-weight:500;color:var(--text2)}
+.about-btns{display:flex;gap:.9rem;flex-wrap:wrap}
+
+.team{background:var(--bg2)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem}
+.team-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;transition:transform .3s,box-shadow .3s,border-color .3s}
+.team-card:hover{transform:translateY(-5px);box-shadow:var(--shl);border-color:var(--border2)}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--gold4);border:3px solid var(--gold3);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.team-card h3{font-size:1.05rem;margin-bottom:.3rem}
+.team-card .role{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
+.team-card p{font-size:.86rem;line-height:1.7;color:var(--muted)}
+
+.values-section{background:var(--dark2);padding:108px 5%}
+.values-section h2{color:#edeae2}
+.values-section .eyebrow{color:var(--gold2)}.values-section .eyebrow::before{background:var(--gold2)}
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.val-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:2rem;transition:background .3s,border-color .3s}
+.val-card:hover{background:rgba(184,136,42,.08);border-color:rgba(184,136,42,.25)}
+.val-card .ico{font-size:1.8rem;margin-bottom:1rem}
+.val-card h3{color:#ddd8cf;font-size:1.05rem;margin-bottom:.6rem}
+.val-card p{font-size:.88rem;line-height:1.75;color:#706a60}
+
+.stats-band{background:var(--gold);padding:72px 5%}
+.stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-big .n{font-family:'Manrope',sans-serif;font-size:3rem;font-weight:900;color:#fff;letter-spacing:-.05em;line-height:1}
+.stat-big .n sup{font-size:1.4rem}
+.stat-big .l{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.75);margin-top:6px;letter-spacing:.04em}
+
+.cta-band{background:var(--bg2);padding:72px 5%}
+.cta-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-inner h2{margin-bottom:.5rem}
+.cta-inner p{color:var(--muted)}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:3.5rem}.about-imgs{max-width:480px}.about-sm{display:none}.team-grid{grid-template-columns:repeat(2,1fr)}.values-grid{grid-template-columns:1fr}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr}.stats-inner{grid-template-columns:1fr}.cta-inner{flex-direction:column;text-align:center}.cta-btns{justify-content:center}.about-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Couvreur<span>Pro</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="apropos.html" class="active">À propos</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="devis.html" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+    <button class="hbg" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li class="dcta"><a href="devis.html">Devis gratuit →</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow reveal">Notre histoire</div>
+    <h1 class="reveal d1">À propos de nous</h1>
+    <p class="reveal d2">Nous sommes une équipe passionnée par notre métier et le travail bien fait. Nous travaillons honnêtement, sans promesses vides. Notre objectif : que votre maison reste protégée et que vous soyez rassurés.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section-pad alt">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs reveal">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=620&q=80" alt="Notre équipe" class="about-main" onerror="this.src='https://via.placeholder.com/480x600/f1ede5/b8882a?text=Notre+Equipe'">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=360&q=80" alt="Chantier" class="about-sm" onerror="this.src='https://via.placeholder.com/260x195/f8f6f1/b8882a?text=Chantier'">
+        <div class="about-years"><div class="ay-n">10</div><div class="ay-t">ans d'expertise</div></div>
+      </div>
+      <div class="about-body reveal d2">
+        <div><div class="eyebrow">Notre ADN</div><h2>Qui sommes-nous ?</h2></div>
+        <p>Nous sommes une équipe passionnée par notre métier et le travail bien fait. Chaque chantier est abordé avec la même rigueur, qu'il s'agisse d'une simple réparation ou d'une rénovation complète.</p>
+        <p>Nous travaillons honnêtement, sans promesses vides. Notre objectif : que votre maison reste protégée et que vous soyez rassurés du début à la fin du chantier.</p>
+        <div class="vals">
+          <div class="val">Honnêteté et transparence sur chaque chantier</div>
+          <div class="val">Matériaux sélectionnés avec soin, durabilité garantie</div>
+          <div class="val">Équipe qualifiée, formée aux nouvelles techniques</div>
+          <div class="val">Délais respectés, devis sans mauvaise surprise</div>
+          <div class="val">Réactivité et disponibilité pour toute urgence</div>
+        </div>
+        <div class="about-btns">
+          <a href="devis.html" class="btn btn-gold">Demander un devis</a>
+          <a href="tel:+33600000000" class="btn btn-ghost">📞 Nous appeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-big reveal"><div class="n">10<sup>+</sup></div><div class="l">Ans d'expérience</div></div>
+    <div class="stat-big reveal d1"><div class="n">500<sup>+</sup></div><div class="l">Chantiers réalisés</div></div>
+    <div class="stat-big reveal d2"><div class="n">98<sup>%</sup></div><div class="l">Clients satisfaits</div></div>
+    <div class="stat-big reveal d3"><div class="n">48<sup>h</sup></div><div class="l">Délai intervention</div></div>
+  </div>
+</div>
+
+<!-- ÉQUIPE -->
+<section class="section-pad team">
+  <div class="container">
+    <div class="eyebrow reveal">Les artisans</div>
+    <h2 class="reveal d1">Notre équipe</h2>
+    <p class="lead reveal d2">Chaque membre de l'équipe a son rôle précis pour que tout soit fait correctement et rapidement.</p>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="team-avatar">👷</div><h3>Marc Dupont</h3><div class="role">Chef de chantier</div><p>15 ans d'expérience en couverture. Spécialiste des toitures complexes et des rénovations de patrimoine.</p></div>
+      <div class="team-card reveal d1"><div class="team-avatar">🔧</div><h3>Julien Martin</h3><div class="role">Couvreur zingueur</div><p>Expert en zinguerie et évacuation des eaux. Pose de gouttières, chéneaux et solins.</p></div>
+      <div class="team-card reveal d2"><div class="team-avatar">📐</div><h3>Thomas Bernard</h3><div class="role">Charpentier</div><p>Maîtrise des structures bois traditionnelles et modernes. Rénovation et consolidation de charpentes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section class="values-section">
+  <div class="container">
+    <div class="eyebrow reveal">Ce qui nous guide</div>
+    <h2 class="reveal d1">Nos valeurs</h2>
+    <div class="values-grid">
+      <div class="val-card reveal"><div class="ico">🤝</div><h3>Honnêteté</h3><p>Pas de mauvaises surprises. Le devis que vous signez est celui que vous payez. Nous vous expliquons chaque poste de travaux.</p></div>
+      <div class="val-card reveal d1"><div class="ico">⭐</div><h3>Excellence</h3><p>Nous ne faisons pas de travail bâclé. Chaque chantier est réalisé avec les mêmes standards de qualité, quelle que soit sa taille.</p></div>
+      <div class="val-card reveal d2"><div class="ico">⚡</div><h3>Réactivité</h3><p>Une fuite ne peut pas attendre. Nous intervenons en urgence et nous engageons à vous répondre dans les 24h.</p></div>
+      <div class="val-card reveal d3"><div class="ico">🌱</div><h3>Durabilité</h3><p>Nous choisissons des matériaux durables et certifiés. Moins de chantiers, plus de qualité — pour votre maison et l'environnement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div><h2>Faites confiance à notre équipe</h2><p>Devis gratuit et sans engagement sous 48h.</p></div>
+    <div class="cta-btns">
+      <a href="devis.html" class="btn btn-gold">Demander un devis</a>
+      <a href="realisations.html" class="btn btn-outline">Voir nos réalisations</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand"><div class="footer-logo">Couvreur<span>Pro</span></div><p>Couvreurs professionnels en Île-de-France depuis plus de 10 ans.</p></div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="services.html">Services</a></li><li><a href="apropos.html">À propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="devis.html">Devis gratuit</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Réparation de fuites</a></li><li><a href="services.html">Remplacement de tuiles</a></li><li><a href="services.html">Rénovation complète</a></li><li><a href="services.html">Gouttières</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><ul><li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li><li>✉️ <a href="mailto:contact@couvreurpro.fr">contact@couvreurpro.fr</a></li><li>📍 Île-de-France</li><li>🕐 Lun–Sam · 8h–19h</li></ul></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2025 CouvreurPro</span><span class="footer-copy">Assurance décennale · Certifié RGE</span></div>
+</footer>
+<script>
+var nb=document.getElementById('navbar'),bg=document.getElementById('burger'),dr=document.getElementById('drawer');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',scrollY>30)},{passive:true});
+bg.addEventListener('click',function(){bg.classList.toggle('open');dr.classList.toggle('open')});
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){bg.classList.remove('open');dr.classList.remove('open')})});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>

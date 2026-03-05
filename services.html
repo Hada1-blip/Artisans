@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CouvreurPro — Services</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.svc-full-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.svc-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2.2rem 2rem 2.4rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:20px 20px 0 0}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shl);border-color:var(--border2)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-ico{width:56px;height:56px;background:var(--gold3);border:1px solid rgba(184,136,42,.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.3rem;transition:background .3s}
+.svc-card:hover .svc-ico{background:var(--gold4)}
+.svc-card h3{font-size:1.18rem;margin-bottom:.7rem}
+.svc-card p{font-size:.9rem;line-height:1.78;color:var(--muted)}
+.svc-card .tag{display:inline-block;margin-top:1.1rem;font-family:'Manrope',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:var(--gold3);padding:.3rem .8rem;border-radius:100px}
+
+.process{background:var(--dark2);padding:108px 5%}
+.process h2{color:#edeae2}
+.process .lead{color:#847e76}
+.process .eyebrow{color:var(--gold2)}.process .eyebrow::before{background:var(--gold2)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;counter-reset:step}
+.step{position:relative;counter-increment:step}
+.step::before{content:counter(step,"0"counter(step));font-family:'Manrope',sans-serif;font-size:3.5rem;font-weight:900;color:rgba(184,136,42,.15);line-height:1;margin-bottom:.8rem;display:block;letter-spacing:-.05em}
+.step h3{color:#ddd8cf;font-size:1rem;margin-bottom:.5rem}
+.step p{font-size:.86rem;line-height:1.75;color:#6a6460}
+.step-line{position:absolute;top:2.2rem;left:calc(100% - .5rem);width:100%;height:1px;background:linear-gradient(90deg,rgba(184,136,42,.3),transparent);pointer-events:none}
+.step:last-child .step-line{display:none}
+
+.cta-band{background:var(--gold);padding:72px 5%}
+.cta-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-inner h2{color:#fff;margin-bottom:.5rem;font-size:clamp(1.7rem,3vw,2.4rem)}
+.cta-inner p{color:rgba(255,255,255,.78)}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+
+@media(max-width:1024px){.svc-full-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.step-line{display:none}}
+@media(max-width:768px){.svc-full-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.cta-inner{flex-direction:column;text-align:center}.cta-btns{justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Couvreur<span>Pro</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="devis.html" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+    <button class="hbg" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li class="dcta"><a href="devis.html">Devis gratuit →</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow reveal">Nos prestations</div>
+    <h1 class="reveal d1">Nos services</h1>
+    <p class="reveal d2">Nous réparons les fuites et remplaçons les tuiles abîmées. Nous faisons des rénovations complètes, anciennes ou neuves. Nous posons aussi des gouttières et protégeons votre maison contre l'eau.</p>
+  </div>
+</div>
+
+<!-- GRILLE SERVICES -->
+<section class="section-pad alt">
+  <div class="container">
+    <div class="svc-full-grid">
+      <div class="svc-card reveal"><div class="svc-ico">🔧</div><h3>Réparation de fuites</h3><p>Intervention rapide pour stopper les infiltrations d'eau. Diagnostic précis, réparation durable avec des matériaux de qualité professionnelle. Nous localisons la source et traitons le problème à la racine.</p><span class="tag">Urgence 48h</span></div>
+      <div class="svc-card reveal d1"><div class="svc-ico">🏠</div><h3>Remplacement de tuiles</h3><p>Tuiles cassées, déplacées ou vieillissantes ? Nous les remplaçons à l'identique ou avec des matériaux améliorés. Travail soigné pour une toiture solide et esthétique.</p><span class="tag">Tous types de tuiles</span></div>
+      <div class="svc-card reveal d2"><div class="svc-ico">✨</div><h3>Rénovation complète</h3><p>Rénovation totale de toiture, ancienne ou neuve. Charpente, isolation thermique, couverture — nous gérons l'ensemble du chantier de A à Z avec rigueur.</p><span class="tag">Clé en main</span></div>
+      <div class="svc-card reveal d1"><div class="svc-ico">💧</div><h3>Gouttières & évacuation</h3><p>Pose, remplacement et entretien de gouttières. Protection optimale contre les débordements et les dégâts des eaux sur vos façades et fondations.</p><span class="tag">Zinc · PVC · Alu</span></div>
+      <div class="svc-card reveal d2"><div class="svc-ico">🛡️</div><h3>Traitement & hydrofugation</h3><p>Nettoyage haute pression, démoussage biocide et application de produits hydrofuges. Prolongez significativement la durée de vie de votre toiture.</p><span class="tag">Garantie 5 ans</span></div>
+      <div class="svc-card reveal d3"><div class="svc-ico">☀️</div><h3>Velux & lucarnes</h3><p>Installation et remplacement de fenêtres de toit, lucarnes, châssis de désenfumage. Intégration parfaite dans votre couverture existante.</p><span class="tag">Toutes marques</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="eyebrow reveal">Comment ça marche</div>
+    <h2 class="reveal d1">Notre façon de travailler</h2>
+    <p class="lead reveal d2">Un processus simple et transparent, du premier contact jusqu'à la livraison du chantier.</p>
+    <div class="steps">
+      <div class="step reveal"><h3>Prise de contact</h3><p>Appelez-nous ou envoyez un message. Nous répondons sous 24h.</p><div class="step-line"></div></div>
+      <div class="step reveal d1"><h3>Diagnostic gratuit</h3><p>Nous venons sur place évaluer l'état de votre toiture sans frais.</p><div class="step-line"></div></div>
+      <div class="step reveal d2"><h3>Devis clair</h3><p>Vous recevez un devis détaillé, sans surprise ni frais cachés.</p><div class="step-line"></div></div>
+      <div class="step reveal d3"><h3>Réalisation</h3><p>Notre équipe intervient dans les délais convenus. Travail garanti.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div><h2>Prêt à démarrer votre projet ?</h2><p>Contactez-nous pour un devis gratuit sous 48h.</p></div>
+    <div class="cta-btns">
+      <a href="devis.html" class="btn btn-white">Devis gratuit</a>
+      <a href="tel:+33600000000" class="btn" style="background:rgba(0,0,0,.2);color:#fff;border:2px solid rgba(255,255,255,.4)">📞 06 00 00 00 00</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand"><div class="footer-logo">Couvreur<span>Pro</span></div><p>Couvreurs professionnels en Île-de-France depuis plus de 10 ans.</p></div>
+    <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="services.html">Services</a></li><li><a href="apropos.html">À propos</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="devis.html">Devis gratuit</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Réparation de fuites</a></li><li><a href="services.html">Remplacement de tuiles</a></li><li><a href="services.html">Rénovation complète</a></li><li><a href="services.html">Gouttières</a></li><li><a href="services.html">Hydrofugation</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><ul><li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li><li>✉️ <a href="mailto:contact@couvreurpro.fr">contact@couvreurpro.fr</a></li><li>📍 Île-de-France</li><li>🕐 Lun–Sam · 8h–19h</li></ul></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2025 CouvreurPro — Tous droits réservés</span><span class="footer-copy">Assurance décennale · Certifié RGE Qualibat</span></div>
+</footer>
+
+<script>
+var nb=document.getElementById('navbar'),bg=document.getElementById('burger'),dr=document.getElementById('drawer');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',scrollY>30)},{passive:true});
+bg.addEventListener('click',function(){bg.classList.toggle('open');dr.classList.toggle('open')});
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){bg.classList.remove('open');dr.classList.remove('open')})});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
